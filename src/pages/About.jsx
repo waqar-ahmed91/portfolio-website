@@ -24,7 +24,7 @@ const About = () => {
             <p>This realization pushed me into AI Engineering and SEO Strategy, where I learned to systematically build engines of growth.</p>
             <p>Today, as an AI Filmmaker and Creative Technologist, I use neural networks not just to optimize systems, but to craft cinematic experiences. It is a fusion of analytical rigor and creative vision.</p>
             <br/>
-            <a href="#" className="btn btn-secondary cv-btn">Download CV</a>
+            <a href="https://drive.google.com/file/d/1E7vXAcVRw_JaNTWlNp3ng-6cHnM-FLI5/view?usp=sharing" className="btn btn-secondary cv-btn" target="_blank" rel="noopener noreferrer">Download CV</a>
           </div>
         </AnimatedSection>
 
