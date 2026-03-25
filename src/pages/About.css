@@ -89,74 +89,275 @@
   margin-top: 1rem;
 }
 
-/* Timeline */
+/* Timeline — Horizontal Wave */
 .timeline-section {
   margin-bottom: 8rem;
+  overflow-x: auto;
 }
 
 .timeline-section h2 {
   font-size: 2.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0.5rem;
   text-align: center;
 }
 
-.timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 100px;
-  width: 2px;
-  height: 100%;
-  background: var(--glass-border);
-}
-
-.timeline-item {
-  display: flex;
+.timeline-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
   margin-bottom: 3rem;
+  font-size: 1.05rem;
+}
+
+.wave-timeline {
   position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 900px;
+  padding: 2rem 1rem;
 }
 
-.year {
-  width: 100px;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  color: var(--accent-cyan);
-  font-size: 1.25rem;
-  padding-right: 2rem;
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.timeline-item .content {
-  padding-left: 3rem;
-  position: relative;
-}
-
-.timeline-item .content::before {
-  content: '';
+/* horizontal spine */
+.wave-spine {
   position: absolute;
-  left: -6px;
-  top: 6px;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--accent-cyan) 10%, var(--accent-cyan) 90%, transparent);
+  opacity: 0.25;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.wave-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-width: 140px;
+}
+
+/* connector line between card and dot */
+.wave-connector {
+  width: 2px;
+  height: 52px;
+  background: linear-gradient(to bottom, var(--accent-cyan), transparent);
+  opacity: 0.4;
+}
+
+.wave-item--bottom .wave-connector {
+  background: linear-gradient(to top, var(--accent-cyan), transparent);
+}
+
+/* glowing dot on the spine */
+.wave-dot {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--accent-cyan);
+  background: var(--bg-primary);
+  border: 2px solid var(--glass-border);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.wave-item:hover .wave-dot,
+.wave-item--active .wave-dot {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan-glow);
+}
+
+/* card */
+.wave-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  text-align: center;
+  max-width: 148px;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wave-item:hover .wave-card,
+.wave-item--active .wave-card {
+  border-color: var(--accent-cyan);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--accent-cyan-glow);
+}
+
+.wave-year {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 0.35rem;
+}
+
+.wave-card h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.wave-card p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.wave-item--active .wave-card h4 {
+  color: var(--accent-cyan);
+}
+
+/* ── Journey Map ── */
+.journey-map-section {
+  margin-bottom: 8rem;
+}
+
+.journey-map-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.journey-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 3.5rem;
+  font-size: 1.05rem;
+}
+
+.journey-map {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.journey-map::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 34px;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--accent-cyan), transparent);
+  opacity: 0.25;
+}
+
+.journey-milestone {
+  display: flex;
+  gap: 1.75rem;
+  align-items: flex-start;
+  padding: 1.75rem 1.75rem 1.75rem 0;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.journey-milestone:hover {
+  transform: translateX(6px);
+}
+
+.journey-milestone::before {
+  content: '';
+  position: absolute;
+  left: 26px;
+  top: 32px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--glass-border);
+  z-index: 1;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.journey-milestone:hover::before,
+.journey-milestone--active::before {
+  border-color: var(--accent-cyan);
   box-shadow: 0 0 10px var(--accent-cyan-glow);
 }
 
-.timeline-item h4 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+.milestone-icon {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
 }
 
-.timeline-item p {
+.milestone-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.journey-milestone:hover .milestone-icon,
+.journey-milestone--active .milestone-icon {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 20px var(--accent-cyan-glow);
+}
+
+.milestone-body {
+  padding-top: 0.4rem;
+  flex: 1;
+}
+
+.milestone-year {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.milestone-body h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.milestone-body p {
   color: var(--text-secondary);
+  font-size: 0.97rem;
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+
+.milestone-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.milestone-tags span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 240, 255, 0.07);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  color: var(--accent-cyan);
+  letter-spacing: 0.04em;
+}
+
+.journey-milestone--active .milestone-body h4 {
+  color: var(--accent-cyan);
 }
 
 @media (max-width: 768px) {
