@@ -18,6 +18,7 @@ const Navbar = () => {
           <NavLink to="/" onClick={() => setIsOpen(false)}>Home</NavLink>
           <NavLink to="/about" onClick={() => setIsOpen(false)}>About</NavLink>
           <NavLink to="/projects" onClick={() => setIsOpen(false)}>Projects</NavLink>
+          <NavLink to="/ai-films" onClick={() => setIsOpen(false)}>AI Films</NavLink>
           <NavLink to="/skills" onClick={() => setIsOpen(false)}>Skills</NavLink>
           <NavLink to="/contact" onClick={() => setIsOpen(false)}>Contact</NavLink>
         </div>
