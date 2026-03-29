@@ -6,6 +6,11 @@ import './AIFilms.css';
 const AIFilms = () => {
   const films = [
     {
+      title: "The Silk Labyrinth",
+      embedId: "lbbcQmm9ybg",
+      description: "A mesmerizing VEO-powered commercial exploring texture, light, and the intricate weave of luxury."
+    },
+    {
       title: "LumaWash",
       embedId: "AP1BoYLsJL8",
       description: "A premium AI-generated commercial showcasing transformation through visual storytelling."
